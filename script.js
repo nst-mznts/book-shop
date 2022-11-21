@@ -107,6 +107,10 @@ logoContainer.appendChild(logo);
 const main = document.createElement('main');
 body.appendChild(main);
 
+const wrapper = document.createElement('div');
+wrapper.classList.add('main-wrapper');
+main.appendChild(wrapper);
+
 const createCardTemplate = () => {
     const card = document.createElement('div');
     card.classList.add('card');
@@ -115,24 +119,32 @@ const createCardTemplate = () => {
 
 for (let i = 0; i < 10; i++) {
     const card = createCardTemplate();
-    main.appendChild(card);
-    let author = document.createElement("h4");
-    author.innerText = books[i].author;
-    card.appendChild(author);
+    wrapper.appendChild(card);
+    let wrapperForInf = document.createElement("div");
+    wrapperForInf.classList.add('wrap');
+    card.appendChild(wrapperForInf);
     let images = document.createElement("img");
     images.classList.add('imageLink');
     images.src = books[i].imageLink;
-    card.appendChild(images);
-    let title = document.createElement("h5");
+    wrapperForInf.appendChild(images);
+    let title = document.createElement("h4");
     title.innerText = books[i].title;
-    card.appendChild(title);
+    wrapperForInf.appendChild(title);
+    let author = document.createElement("h5");
+    author.innerText = books[i].author;
+    wrapperForInf.appendChild(author);
     let price = document.createElement('p');
-    price.innerText = 'Price: $' + books[i].price;
-    card.appendChild(price);
-    const button = document.createElement("a");
-    button.href = "#";
-    const btnLabel = document.createElement("p");
-    btnLabel.innerText = "Add to bag";
-    button.appendChild(btnLabel);
-    card.appendChild(button);
+    price.innerText = '$' + books[i].price;
+    wrapperForInf.appendChild(price);
+    let div = document.createElement("div");
+    div.classList.add('wrapper-for-btns');
+    wrapperForInf.appendChild(div);
+    let button = document.createElement("button");
+    button.classList.add('btn');
+    button.innerText = "Add to bag";
+    div.appendChild(button);
+    let showMore = document.createElement("button");
+    showMore.classList.add('btn-more');
+    showMore.innerText = "Show more";
+    div.appendChild(showMore);
   }
