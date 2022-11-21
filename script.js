@@ -145,6 +145,32 @@ for (let i = 0; i < 10; i++) {
     div.appendChild(button);
     let showMore = document.createElement("button");
     showMore.classList.add('btn-more');
+    showMore.classList.add('open-popup');
     showMore.innerText = "Show more";
     div.appendChild(showMore);
-  }
+}
+
+let popupBg = document.createElement("div");
+popupBg.classList.add('popup__bg');
+wrapper.appendChild(popupBg);
+let popup = document.createElement("div");
+popup.classList.add('popup');
+popupBg.appendChild(popup);
+let closePopupButton = document.createElement("button");
+closePopupButton.classList.add('close-popup');
+closePopupButton.innerText = 'Close';
+popup.appendChild(closePopupButton);
+let openPopupButtons = document.querySelectorAll('.open-popup');
+
+openPopupButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        popupBg.classList.add('active');
+        popup.classList.add('active');
+    })
+});
+
+closePopupButton.addEventListener('click',() => {
+    popupBg.classList.remove('active');
+    popup.classList.remove('active');
+});
