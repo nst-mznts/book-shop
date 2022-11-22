@@ -107,8 +107,14 @@ logoContainer.appendChild(logo);
 const main = document.createElement('main');
 body.appendChild(main);
 
+const openbtn = document.createElement('button');
+openbtn.innerHTML = 'Bag';
+openbtn.classList.add('openbtn');
+main.appendChild(openbtn);
+
 const wrapper = document.createElement('div');
 wrapper.classList.add('main-wrapper');
+wrapper.id = 'main';
 main.appendChild(wrapper);
 
 const createCardTemplate = () => {
@@ -132,6 +138,7 @@ for (let i = 0; i < 10; i++) {
     wrapperForInf.appendChild(title);
     let author = document.createElement("h5");
     author.innerText = books[i].author;
+    author.classList.add('author');
     wrapperForInf.appendChild(author);
     let price = document.createElement('p');
     price.innerText = '$' + books[i].price;
@@ -174,3 +181,26 @@ closePopupButton.addEventListener('click',() => {
     popupBg.classList.remove('active');
     popup.classList.remove('active');
 });
+
+const sidebar = document.createElement('div');
+sidebar.classList.add('sidebar');
+sidebar.id = 'mySidebar';
+main.appendChild(sidebar);
+
+const closebtn = document.createElement('button');
+closebtn.innerHTML = 'Close';
+closebtn.classList.add('closebtn');
+sidebar.appendChild(closebtn);
+
+const openNav = () => {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+};
+  
+const closeNav = () => {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "auto";
+};
+  
+openbtn.addEventListener("click", openNav);
+closebtn.addEventListener("click", closeNav);

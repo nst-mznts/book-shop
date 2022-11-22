@@ -66,6 +66,7 @@ main {
     flex-wrap: wrap;
     gap: 20px 40px;
     width: 990px;
+    height: 1900px;
 }
 
 .card {
@@ -207,12 +208,58 @@ main {
     height: 40px;
     border-radius: 6px;
     border: none;
-    position: absolute;
-    top: 80px;
 }
 
 .close-popup:hover {
     background-color: #fff;
     color: #000;
     border: 2px solid #2196F3;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    margin-left: 50px;
+}
+
+.closebtn {
+    padding: 2px;
+    font-size: 16px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    width: 60px;
+    height: 30px;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+  
+.openbtn:hover {
+    background-color: #444;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
 }
