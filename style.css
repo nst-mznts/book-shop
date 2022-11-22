@@ -56,7 +56,7 @@ header h1 {
 main {
     width: 100%;
     position: relative;
-    top: 40px;
+    top: 0;
 }
 
 .main-wrapper {
@@ -239,7 +239,7 @@ main {
 .closebtn {
     padding: 2px;
     font-size: 16px;
-    color: #818181;
+    color: #333;
     display: block;
     transition: 0.3s;
     width: 60px;
@@ -262,4 +262,10 @@ main {
 #main {
     transition: margin-left .5s;
     padding: 16px;
+}
+
+.miniCard {
+    background-color: #ddd;
+    color: #000;
+    font-size: 8px;
 }

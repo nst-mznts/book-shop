@@ -148,6 +148,8 @@ for (let i = 0; i < 10; i++) {
     wrapperForInf.appendChild(div);
     let button = document.createElement("button");
     button.classList.add('btn');
+    button.classList.add('to-bag');
+    button.id = i;
     button.innerText = "Add to bag";
     div.appendChild(button);
     let showMore = document.createElement("button");
@@ -204,3 +206,18 @@ const closeNav = () => {
   
 openbtn.addEventListener("click", openNav);
 closebtn.addEventListener("click", closeNav);
+
+document.querySelector('#main').addEventListener('click', event => {
+    if (event.target.classList.contains('to-bag')) {
+        let idItem = event.target.id;
+        let miniCard = document.createElement('div');
+        miniCard.classList.add('miniCard');
+        let auth = document.createElement('p');
+        auth.innerHTML = books[idItem].author;
+        miniCard.appendChild(auth);
+        let tit = document.createElement('p');
+        tit.innerHTML = books[idItem].title;
+        miniCard.appendChild(tit);
+        sidebar.appendChild(miniCard);
+    }
+});
