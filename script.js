@@ -156,6 +156,7 @@ for (let i = 0; i < 10; i++) {
     showMore.classList.add('btn-more');
     showMore.classList.add('open-popup');
     showMore.innerText = "Show more";
+    showMore.id = i;
     div.appendChild(showMore);
 }
 
@@ -165,23 +166,30 @@ wrapper.appendChild(popupBg);
 let popup = document.createElement("div");
 popup.classList.add('popup');
 popupBg.appendChild(popup);
+let openPopupButtons = document.querySelectorAll('.open-popup');
 let closePopupButton = document.createElement("button");
 closePopupButton.classList.add('close-popup');
-closePopupButton.innerText = 'Close';
+closePopupButton.innerText = 'X';
 popup.appendChild(closePopupButton);
-let openPopupButtons = document.querySelectorAll('.open-popup');
 
 openPopupButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
         e.preventDefault();
         popupBg.classList.add('active');
         popup.classList.add('active');
+        let id = e.target.id;
+        let description = document.createElement('p');
+        description.classList.add('active-p');
+        description.innerHTML = books[id].description;
+        popup.appendChild(description);       
     })
 });
 
 closePopupButton.addEventListener('click',() => {
     popupBg.classList.remove('active');
     popup.classList.remove('active');
+    let deleteDescription = document.querySelector(".active-p");
+    deleteDescription.remove();
 });
 
 const sidebar = document.createElement('div');

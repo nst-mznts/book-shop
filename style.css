@@ -183,6 +183,8 @@ main {
     position: relative;
     top: 50%;
     left: 50%;
+    display: flex;
+    flex-direction: column;
     transform: translate(-50%, -50%) scale(0);
     background: #FAFAFA;
     box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
@@ -197,17 +199,24 @@ main {
     transition: 0.5s all;
 }
 
+.popup p {
+    width: 500px;
+}
+
 .close-popup {
+    position: absolute;
+    right: 20px;
     cursor: pointer;
     background-color: #2196F3;
     color: #fff;
     text-align: center;
     padding: 3px 3px;
     text-decoration: none;
-    width: 120px;
-    height: 40px;
+    width: 60px;
+    height: 30px;
     border-radius: 6px;
     border: none;
+    margin-bottom: 20px;
 }
 
 .close-popup:hover {
