@@ -267,5 +267,24 @@ main {
 .miniCard {
     background-color: #ddd;
     color: #000;
-    font-size: 8px;
+    padding: 4px;
+    font-size: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.miniCard div {
+    display: flex;
+    flex-direction: column;
+    width: 152px;
+}
+
+.miniCard img {
+    width: 60px;
+}
+
+.miniCard button {
+    width: 20px;
+    height: 20px;
 }

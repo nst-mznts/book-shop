@@ -207,17 +207,28 @@ const closeNav = () => {
 openbtn.addEventListener("click", openNav);
 closebtn.addEventListener("click", closeNav);
 
+
 document.querySelector('#main').addEventListener('click', event => {
+
     if (event.target.classList.contains('to-bag')) {
         let idItem = event.target.id;
         let miniCard = document.createElement('div');
         miniCard.classList.add('miniCard');
+        let im = document.createElement('img');
+        im.src = books[idItem].imageLink;
+        miniCard.appendChild(im);
+        let wr = document.createElement('div');
+        miniCard.appendChild(wr);
         let auth = document.createElement('p');
         auth.innerHTML = books[idItem].author;
-        miniCard.appendChild(auth);
+        wr.appendChild(auth);
         let tit = document.createElement('p');
         tit.innerHTML = books[idItem].title;
-        miniCard.appendChild(tit);
+        wr.appendChild(tit);
+        let clBtn = document.createElement('button');
+        clBtn.innerHTML = 'X';
+        clBtn.classList.add('delete-item');
+        miniCard.appendChild(clBtn);
         sidebar.appendChild(miniCard);
     }
 });
