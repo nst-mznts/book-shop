@@ -222,21 +222,37 @@ document.querySelector('#main').addEventListener('click', event => {
         let idItem = event.target.id;
         let miniCard = document.createElement('div');
         miniCard.classList.add('miniCard');
-        let im = document.createElement('img');
-        im.src = books[idItem].imageLink;
-        miniCard.appendChild(im);
-        let wr = document.createElement('div');
-        miniCard.appendChild(wr);
-        let auth = document.createElement('p');
-        auth.innerHTML = books[idItem].author;
-        wr.appendChild(auth);
-        let tit = document.createElement('p');
-        tit.innerHTML = books[idItem].title;
-        wr.appendChild(tit);
-        let clBtn = document.createElement('button');
-        clBtn.innerHTML = 'X';
-        clBtn.classList.add('delete-item');
-        miniCard.appendChild(clBtn);
+        miniCard.id = idItem;
+        let bookImg = document.createElement('img');
+        bookImg.src = books[idItem].imageLink;
+        miniCard.appendChild(bookImg);
+        let textWrapper = document.createElement('div');
+        miniCard.appendChild(textWrapper);
+        let bookAuthor = document.createElement('p');
+        bookAuthor.innerHTML = books[idItem].author;
+        textWrapper.appendChild(bookAuthor);
+        let bookTitle = document.createElement('p');
+        bookTitle.innerHTML = books[idItem].title;
+        textWrapper.appendChild(bookTitle);
+        let closeBtn = document.createElement('button');
+        closeBtn.innerHTML = 'X';
+        closeBtn.classList.add('delete-item');
+        miniCard.appendChild(closeBtn);
         sidebar.appendChild(miniCard);
     }
 });
+
+
+const confirmBtn = document.createElement('button');
+confirmBtn.innerHTML = 'Confirm order';
+confirmBtn.classList.add('confirm');
+sidebar.appendChild(confirmBtn);
+
+const makeOrder = document.querySelector(".confirm");
+
+makeOrder.addEventListener('click',(e) => {
+    e.preventDefault();
+    document.querySelector(".form__bg").classList.add('active');
+    document.querySelector(".form").classList.add('active');
+});
+
