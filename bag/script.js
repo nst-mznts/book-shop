@@ -79,23 +79,20 @@ const books = [{
       "description": "Secrets of the Javascript Ninja takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance. Written for JavaScript developers with intermediate-level skills, this book will give you the knowledge you need to create a cross-browser JavaScript library from the ground up."
     }
 ]
+
+// Create header
 const body = document.body;
-
-var basket = {};
-var sum = 0;
-checkBasket();
-
 const header = document.createElement('header');
 body.appendChild(header);
 
 const homePage = document.createElement('a');
-homePage.href = '#';
+homePage.href = '../catalog/index.html';
 homePage.innerText = 'Book Catalog';
-homePage.classList.add('active');
 header.appendChild(homePage);
 
 const bag = document.createElement('a');
-bag.href = '../bag/bag.html';
+bag.href = '#';
+bag.classList.add('active');
 bag.innerText = 'Bag';
 header.appendChild(bag);
 
@@ -108,230 +105,90 @@ const logo = document.createElement('img');
 logo.src = '../img/logo.png';
 logoContainer.appendChild(logo);
 
-const main = document.createElement('main');
-body.appendChild(main);
+var basket = {}; // Basket
+checkBasket(); // Check basket in the localStorage
+showBasket(); // Display items on the page
 
-const openbtn = document.createElement('button');
-openbtn.innerHTML = 'Bag';
-openbtn.classList.add('openbtn');
-main.appendChild(openbtn);
-
-const sidebar = document.createElement('div');
-sidebar.classList.add('sidebar');
-sidebar.id = 'mySidebar';
-main.appendChild(sidebar);
-
-const closebtn = document.createElement('button');
-closebtn.innerHTML = 'Close';
-closebtn.classList.add('closebtn');
-sidebar.appendChild(closebtn);
-
-const openNav = () => {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-};
-  
-const closeNav = () => {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft= "auto";
-};
-  
-openbtn.addEventListener("click", openNav);
-closebtn.addEventListener("click", closeNav);
-
-function showBasket(){
-    for (let key in basket) {
+function showBasket() {
+    let keys = Object.keys(basket);
+    for (let i = 0, l = keys.length; i < l; i++) {
         let miniCard = document.createElement('div');
         miniCard.classList.add('miniCard');
-        miniCard.id = basket[key];
+        miniCard.id = keys[i];
+        body.appendChild(miniCard);
         let bookImg = document.createElement('img');
-        bookImg.src = books[key].imageLink;
+        bookImg.src = books[i].imageLink;
         miniCard.appendChild(bookImg);
         let textWrapper = document.createElement('div');
+        textWrapper.classList.add('textWrapper');
         miniCard.appendChild(textWrapper);
         let bookAuthor = document.createElement('h4');
-        bookAuthor.innerHTML = books[key].author;
+        bookAuthor.innerHTML = books[i].author;
         textWrapper.appendChild(bookAuthor);
         let bookTitle = document.createElement('p');
-        bookTitle.innerHTML = books[key].title;
+        bookTitle.innerHTML = books[i].title;
         textWrapper.appendChild(bookTitle);
         let countWrapper = document.createElement('div');
         countWrapper.classList.add('countWrapper');
-        textWrapper.appendChild(countWrapper);
-        /*let minus = document.createElement('button');
-        minus.innerHTML = '-';
-        countWrapper.appendChild(minus);*/
+        miniCard.appendChild(countWrapper);
+        let minusGood = document.createElement('button');
+        minusGood.innerHTML = '-';
+        minusGood.id = keys[i];
+        countWrapper.appendChild(minusGood);
+        let count = document.createElement('p');
+        count.innerHTML = basket[keys[i]];
+        countWrapper.appendChild(count);
+        let plusGood = document.createElement('button');
+        plusGood.innerHTML = '+';
+        plusGood.id = keys[i];
+        countWrapper.appendChild(plusGood);
         let price = document.createElement('p');
-        price.innerHTML = '$' + books[key].price;
+        price.innerHTML = '$' + basket[keys[i]] * books[i].price;
         countWrapper.appendChild(price);
-        sum += books[key].price;
-        /*let plus = document.createElement('button');
-        plus.innerHTML = '+';
-        countWrapper.appendChild(plus);*/
         let closeBtn = document.createElement('button');
         closeBtn.innerHTML = 'X';
         closeBtn.classList.add('delete-item');
-        miniCard.appendChild(closeBtn);
-        sidebar.appendChild(miniCard);
+        closeBtn.id = keys[i];
+        miniCard.appendChild(closeBtn); 
+        plusGood.addEventListener("click", plusGoods);
+        minusGood.addEventListener("click", minusGoods);
+        closeBtn.addEventListener("click", deleteGoods);
     }
-
-            
 }
 
-const wrapper = document.createElement('div');
-wrapper.classList.add('main-wrapper');
-wrapper.id = 'main';
-main.appendChild(wrapper);
-
-const createCardTemplate = () => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    return card;
-}
-
-for (let i = 0; i < 10; i++) {
-    const card = createCardTemplate();
-    wrapper.appendChild(card);
-    let wrapperForInf = document.createElement("div");
-    wrapperForInf.classList.add('wrap');
-    card.appendChild(wrapperForInf);
-    let images = document.createElement("img");
-    images.classList.add('imageLink');
-    images.src = books[i].imageLink;
-    wrapperForInf.appendChild(images);
-    let title = document.createElement("h4");
-    title.innerText = books[i].title;
-    wrapperForInf.appendChild(title);
-    let author = document.createElement("h5");
-    author.innerText = books[i].author;
-    author.classList.add('author');
-    wrapperForInf.appendChild(author);
-    let price = document.createElement('p');
-    price.innerText = '$' + books[i].price;
-    wrapperForInf.appendChild(price);
-    let div = document.createElement("div");
-    div.classList.add('wrapper-for-btns');
-    wrapperForInf.appendChild(div);
-    let button = document.createElement("button");
-    button.classList.add('btn');
-    button.classList.add('to-bag');
-    button.id = i;
-    button.setAttribute('data-art', i);
-    button.innerText = "Add to bag";
-    div.appendChild(button);
-    button.addEventListener("click", addToBacket);
-    let showMore = document.createElement("button");
-    showMore.classList.add('btn-more');
-    showMore.classList.add('open-popup');
-    showMore.innerText = "Show more";
-    showMore.id = i;
-    div.appendChild(showMore);
-}
-
-let popupBg = document.createElement("div");
-popupBg.classList.add('popup__bg');
-wrapper.appendChild(popupBg);
-let popup = document.createElement("div");
-popup.classList.add('popup');
-popupBg.appendChild(popup);
-let openPopupButtons = document.querySelectorAll('.open-popup');
-let closePopupButton = document.createElement("button");
-closePopupButton.classList.add('close-popup');
-closePopupButton.innerText = 'X';
-popup.appendChild(closePopupButton);
-
-openPopupButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        e.preventDefault();
-        popupBg.classList.add('active');
-        popup.classList.add('active');
-        let id = e.target.id;
-        let description = document.createElement('p');
-        description.classList.add('active-p');
-        description.innerHTML = books[id].description;
-        popup.appendChild(description);       
-    })
-});
-
-closePopupButton.addEventListener('click',() => {
-    popupBg.classList.remove('active');
-    popup.classList.remove('active');
-    let deleteDescription = document.querySelector(".active-p");
-    deleteDescription.remove();
-});
-
-
-
-//showBacket();
-/*document.querySelector('#main').addEventListener('click', event => {
-
-    if (event.target.classList.contains('to-bag')) {
-        let idItem = event.target.id;
-        if (backet[idItem] !== undefined) {
-            backet[idItem]++;
-        }
-        else {
-            backet[idItem] = 1;
-            let miniCard = document.createElement('div');
-            miniCard.classList.add('miniCard');
-            miniCard.id = idItem;
-            let bookImg = document.createElement('img');
-            bookImg.src = books[idItem].imageLink;
-            miniCard.appendChild(bookImg);
-            let textWrapper = document.createElement('div');
-            miniCard.appendChild(textWrapper);
-            let bookAuthor = document.createElement('p');
-            bookAuthor.innerHTML = books[idItem].author;
-            textWrapper.appendChild(bookAuthor);
-            let bookTitle = document.createElement('p');
-            bookTitle.innerHTML = books[idItem].title;
-            textWrapper.appendChild(bookTitle);
-            let closeBtn = document.createElement('button');
-            closeBtn.innerHTML = 'X';
-            closeBtn.classList.add('delete-item');
-            closeBtn.id = idItem;
-            miniCard.appendChild(closeBtn);
-            sidebar.appendChild(miniCard);
-        }
-        localStorage.setItem('backet', JSON.stringify(backet));
-        console.log(backet);        
-    }
-});*/
-
-function addToBacket(event) {
-    //добавляем товар в корзину
-    if (event.target.classList.contains('to-bag')) {
-        let idItem = event.target.id;
-        if (basket[idItem] !== undefined) {
-            basket[idItem]++;
-        }
-        else {
-            basket[idItem] = 1;
-        }
-    }
-    localStorage.setItem('basket', JSON.stringify(basket) );
+function plusGoods(event) {
+    var articul = event.target.id;
+    basket[articul]++;
+    saveCartToLS(); // Save basket to localStorage
     showBasket();
-    let total = document.createElement('p');
-    total.innerHTML = '$' + sum;
-    sidebar.appendChild(total);
-    
+}
+
+function minusGoods(event) {
+    var articul = event.target.id;
+    if (basket[articul] > 1) {
+        basket[articul]--;
+    }
+    else {
+        delete basket[articul];
+    }
+    saveCartToLS();
+    showBasket();
+}
+
+function deleteGoods(event) {
+    var articul = event.target.id;
+    delete basket[articul];
+    saveCartToLS();
+    showBasket();
 }
 
 function checkBasket() {
     if (localStorage.getItem('basket') !== null) {
         basket = JSON.parse(localStorage.getItem('basket'));
     }
+    console.log(basket);
 }
 
-const confirmBtn = document.createElement('button');
-confirmBtn.innerHTML = 'Confirm order';
-confirmBtn.classList.add('confirm');
-sidebar.appendChild(confirmBtn);
-
-const makeOrder = document.querySelector(".confirm");
-
-makeOrder.addEventListener('click',(e) => {
-    e.preventDefault();
-    document.querySelector(".form__bg").classList.add('active');
-    document.querySelector(".form").classList.add('active');
-});
+function saveCartToLS() {
+    localStorage.setItem('basket', JSON.stringify(basket));
+}
