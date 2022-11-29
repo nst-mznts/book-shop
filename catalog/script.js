@@ -1,7 +1,7 @@
 const books = [{
     "number": 0,
     "author": "Douglas Crockford",
-    "imageLink": "JS_the_good_parts.jpg",
+    "imageLink": "../img/JS_the_good_parts.jpg",
     "title": "JavaScript: The Good Parts: The Good Parts",
     "price": 30,
     "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
@@ -9,7 +9,7 @@ const books = [{
     {
       "number": 1,
       "author": "David Herman",
-      "imageLink": "Effective_JS.jpg",
+      "imageLink": "../img/Effective_JS.jpg",
       "title": "Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript",
       "price": 22,
       "description": "Effective JavaScript is organized around 68 proven approaches for writing better JavaScript, backed by concrete examples. You’ll learn how to choose the right programming style for each project, manage unanticipated problems, and work more successfully with every facet of JavaScript programming from data structures to concurrency"
@@ -17,7 +17,7 @@ const books = [{
     {
       "number": 2,
       "author": "David Flanagan",
-      "imageLink": "JS_the_definitive_guide.jpg",
+      "imageLink": "../img/JS_the_definitive_guide.jpg",
       "title": "JavaScript: The Definitive Guide",
       "price": 40,
       "description": "This Fifth Edition is completely revised and expanded to cover JavaScript as it is used in today's Web 2.0 applications. This book is both an example-driven programmer's guide and a keep-on-your-desk reference, with new chapters that explain everything you need to know to get the most out of JavaScript"
@@ -25,7 +25,7 @@ const books = [{
     {
       "number": 3,
       "author": " Eric Elliott",
-      "imageLink": "programming_JS_applications.jpg",
+      "imageLink": "../img/programming_JS_applications.jpg",
       "title": "Programming JavaScript Applications",
       "price": 19,
       "description": "Take advantage of JavaScript\’s power to build robust web-scale or enterprise applications that are easy to extend and maintain. By applying the design patterns outlined in this practical book, experienced JavaScript developers will learn how to write flexible and resilient code that’s easier—yes, easier—to work with as your code base grows."
@@ -33,7 +33,7 @@ const books = [{
     {
       "number": 4,
       "author": "Addy Osmani",
-      "imageLink": "learning-javascript-design-patterns.jpg",
+      "imageLink": "../img/learning-javascript-design-patterns.jpg",
       "title": "Learning JavaScript Design Patterns",
       "price": 32,
       "description": "With Learning JavaScript Design Patterns, you\’ll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-date with the latest best practices, this book is for you."
@@ -41,7 +41,7 @@ const books = [{
     {
       "number": 5,
       "author": "Boris Cherny",
-      "imageLink": "programming-typescript.jpg",
+      "imageLink": "../img/programming-typescript.jpg",
       "title": "Programming TypeScript",
       "price": 28,
       "description": "Any programmer working with a dynamically typed language will tell you how hard it is to scale to more lines of code and more engineers. That’s why Facebook, Google, and Microsoft invented gradual static type layers for their dynamically typed JavaScript and Python code. This practical book shows you how one such type layer, TypeScript, is unique among them: it makes programming fun with its powerful static type system."
@@ -49,7 +49,7 @@ const books = [{
     {
       "number": 6,
       "author": "Alex Banks, Eve Porcello",
-      "imageLink": "learning_react_2nd_edition.jpg",
+      "imageLink": "../img/learning_react_2nd_edition.jpg",
       "title": "Learning React, 2nd Edition",
       "price": 25,
       "description": "If you want to learn how to build efficient React applications, this is your book. Ideal for web developers and software engineers who understand how JavaScript, CSS, and HTML work in the browser, this updated edition provides best practices and patterns for writing modern React code. No prior knowledge of React or functional JavaScript is necessary."
@@ -57,7 +57,7 @@ const books = [{
     {
       "number": 7,
       "author": "Bradley Meck Alex Young and Mike Cantelon",
-      "imageLink": "node_in_action.jpg",
+      "imageLink": "../img/node_in_action.jpg",
       "title": "Node.js in Action",
       "price": 38,
       "description": "Node.js in Action, Second Edition is a thoroughly revised book based on the best-selling first edition. It starts at square one and guides you through all the features, techniques, and concepts you'll need to build production-quality Node applications."
@@ -65,7 +65,7 @@ const books = [{
     {
       "number": 8,
       "author": "Kyle Simpson",
-      "imageLink": "you_dont_know_JS_yet.jpg",
+      "imageLink": "../img/you_dont_know_JS_yet.jpg",
       "title": "You Don't Know JS Yet: Get Started",
       "price": 26,
       "description": "It seems like there's never been as much widespread desire before for a better way to deeply learn the fundamentals of JavaScript. But with a million blogs, books, and videos out there, just where do you START? Look no further!"
@@ -73,17 +73,18 @@ const books = [{
     {
       "number": 9,
       "author": "John Resig and Bear Bibeault",
-      "imageLink": "secrets_of_the_JS_ninja.jpg",
+      "imageLink": "../img/secrets_of_the_JS_ninja.jpg",
       "title": "Secrets of the JavaScript Ninja",
       "price": 33,
       "description": "Secrets of the Javascript Ninja takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance. Written for JavaScript developers with intermediate-level skills, this book will give you the knowledge you need to create a cross-browser JavaScript library from the ground up."
     }
 ]
-var backet = {};
-checkBacket();
-//showBacket();
-
 const body = document.body;
+
+var backet = {};
+var sum = 0;
+checkBacket();
+
 const header = document.createElement('header');
 body.appendChild(header);
 
@@ -94,8 +95,8 @@ homePage.classList.add('active');
 header.appendChild(homePage);
 
 const bag = document.createElement('a');
-bag.href = '#';
-bag.innerText = 'Order books';
+bag.href = '../bag/bag.html';
+bag.innerText = 'Bag';
 header.appendChild(bag);
 
 const logoContainer = document.createElement('div');
@@ -104,7 +105,7 @@ const textLogo = document.createElement('h1');
 textLogo.innerText = 'BOOK SHOP';
 logoContainer.appendChild(textLogo);
 const logo = document.createElement('img');
-logo.src = 'logo.png';
+logo.src = '../img/logo.png';
 logoContainer.appendChild(logo);
 
 const main = document.createElement('main');
@@ -114,6 +115,68 @@ const openbtn = document.createElement('button');
 openbtn.innerHTML = 'Bag';
 openbtn.classList.add('openbtn');
 main.appendChild(openbtn);
+
+const sidebar = document.createElement('div');
+sidebar.classList.add('sidebar');
+sidebar.id = 'mySidebar';
+main.appendChild(sidebar);
+
+const closebtn = document.createElement('button');
+closebtn.innerHTML = 'Close';
+closebtn.classList.add('closebtn');
+sidebar.appendChild(closebtn);
+
+const openNav = () => {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+};
+  
+const closeNav = () => {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "auto";
+};
+  
+openbtn.addEventListener("click", openNav);
+closebtn.addEventListener("click", closeNav);
+
+function showBacket(){
+    for (let key in backet) {
+        let miniCard = document.createElement('div');
+        miniCard.classList.add('miniCard');
+        miniCard.id = backet[key];
+        let bookImg = document.createElement('img');
+        bookImg.src = books[key].imageLink;
+        miniCard.appendChild(bookImg);
+        let textWrapper = document.createElement('div');
+        miniCard.appendChild(textWrapper);
+        let bookAuthor = document.createElement('h4');
+        bookAuthor.innerHTML = books[key].author;
+        textWrapper.appendChild(bookAuthor);
+        let bookTitle = document.createElement('p');
+        bookTitle.innerHTML = books[key].title;
+        textWrapper.appendChild(bookTitle);
+        let countWrapper = document.createElement('div');
+        countWrapper.classList.add('countWrapper');
+        textWrapper.appendChild(countWrapper);
+        /*let minus = document.createElement('button');
+        minus.innerHTML = '-';
+        countWrapper.appendChild(minus);*/
+        let price = document.createElement('p');
+        price.innerHTML = '$' + books[key].price;
+        countWrapper.appendChild(price);
+        sum += books[key].price;
+        /*let plus = document.createElement('button');
+        plus.innerHTML = '+';
+        countWrapper.appendChild(plus);*/
+        let closeBtn = document.createElement('button');
+        closeBtn.innerHTML = 'X';
+        closeBtn.classList.add('delete-item');
+        miniCard.appendChild(closeBtn);
+        sidebar.appendChild(miniCard);
+    }
+
+            
+}
 
 const wrapper = document.createElement('div');
 wrapper.classList.add('main-wrapper');
@@ -197,30 +260,9 @@ closePopupButton.addEventListener('click',() => {
     deleteDescription.remove();
 });
 
-const sidebar = document.createElement('div');
-sidebar.classList.add('sidebar');
-sidebar.id = 'mySidebar';
-main.appendChild(sidebar);
 
-const closebtn = document.createElement('button');
-closebtn.innerHTML = 'Close';
-closebtn.classList.add('closebtn');
-sidebar.appendChild(closebtn);
 
-const openNav = () => {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-};
-  
-const closeNav = () => {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft= "auto";
-};
-  
-openbtn.addEventListener("click", openNav);
-closebtn.addEventListener("click", closeNav);
-
-showBacket();
+//showBacket();
 /*document.querySelector('#main').addEventListener('click', event => {
 
     if (event.target.classList.contains('to-bag')) {
@@ -264,12 +306,15 @@ function addToBacket(event) {
             backet[idItem]++;
         }
         else {
-            backet[articul] = 1;
+            backet[idItem] = 1;
         }
     }
     localStorage.setItem('backet', JSON.stringify(backet) );
-    //console.log(cart);
     showBacket();
+    let total = document.createElement('p');
+    total.innerHTML = '$' + sum;
+    sidebar.appendChild(total);
+    
 }
 
 function checkBacket() {
@@ -277,34 +322,6 @@ function checkBacket() {
         backet = JSON.parse(localStorage.getItem('backet'));
     }
 }
-
-function showBacket(){
-    for (let key in backet) {
-        let miniCard = document.createElement('div');
-        miniCard.classList.add('miniCard');
-        miniCard.id = backet[key];
-        let bookImg = document.createElement('img');
-        bookImg.src = books[key].imageLink;
-        miniCard.appendChild(bookImg);
-        let textWrapper = document.createElement('div');
-        miniCard.appendChild(textWrapper);
-        let bookAuthor = document.createElement('p');
-        bookAuthor.innerHTML = books[key].author;
-        textWrapper.appendChild(bookAuthor);
-        let bookTitle = document.createElement('p');
-        bookTitle.innerHTML = books[key].title;
-        textWrapper.appendChild(bookTitle);
-        let count = document.createElement('p');
-        count.innerHTML = backet[key];
-        textWrapper.appendChild(count);
-        let closeBtn = document.createElement('button');
-        closeBtn.innerHTML = 'X';
-        closeBtn.classList.add('delete-item');
-        miniCard.appendChild(closeBtn);
-        sidebar.appendChild(miniCard);
-    }          
-}
-
 
 const confirmBtn = document.createElement('button');
 confirmBtn.innerHTML = 'Confirm order';
