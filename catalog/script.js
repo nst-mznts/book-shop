@@ -79,10 +79,9 @@ const books = [{
       "description": "Secrets of the Javascript Ninja takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance. Written for JavaScript developers with intermediate-level skills, this book will give you the knowledge you need to create a cross-browser JavaScript library from the ground up."
     }
 ]
-var basket = {}; // Basket
 
+// Create header
 const body = document.body;
-
 const header = document.createElement('header');
 body.appendChild(header);
 
@@ -94,6 +93,7 @@ header.appendChild(homePage);
 
 const bag = document.createElement('a');
 bag.href = '../bag/bag.html';
+bag.classList.add('bag');
 bag.innerText = 'Bag';
 header.appendChild(bag);
 
@@ -106,6 +106,7 @@ const logo = document.createElement('img');
 logo.src = '../img/logo.png';
 logoContainer.appendChild(logo);
 
+// Create main
 const main = document.createElement('main');
 body.appendChild(main);
 
@@ -114,14 +115,16 @@ wrapper.classList.add('main-wrapper');
 wrapper.id = 'main';
 main.appendChild(wrapper);
 
-const createCardTemplate = () => {
+var basket = {}; // Basket
+loadGoods(); // Uploading goods to the page
+checkBasket(); // Check basket in the localStorage
+
+function loadGoods() {
+  for (let i = 0; i < 10; i++) {
     const card = document.createElement('div');
     card.classList.add('card');
-    return card;
-}
-
-for (let i = 0; i < 10; i++) {
-    const card = createCardTemplate();
+    card.id = i;
+    card.setAttribute('draggable', 'true');
     wrapper.appendChild(card);
     let wrapperForInf = document.createElement("div");
     wrapperForInf.classList.add('wrap');
@@ -147,7 +150,6 @@ for (let i = 0; i < 10; i++) {
     button.classList.add('btn');
     button.classList.add('to-bag');
     button.id = i;
-    button.setAttribute('data-art', i);
     button.innerText = "Add to bag";
     div.appendChild(button);
     button.addEventListener("click", addToBacket);
@@ -157,8 +159,30 @@ for (let i = 0; i < 10; i++) {
     showMore.innerText = "Show more";
     showMore.id = i;
     div.appendChild(showMore);
+  }
 }
 
+// Add items to basket
+function addToBacket(event) {
+  if (event.target.classList.contains('to-bag')) {
+    let idItem = event.target.id;
+    if (basket[idItem] !== undefined) {
+      basket[idItem]++;
+    }
+    else {
+      basket[idItem] = 1;
+    }
+  }
+  localStorage.setItem('basket', JSON.stringify(basket));    
+}
+
+function checkBasket(){
+  if ( localStorage.getItem('basket') !== null) {
+    basket = JSON.parse (localStorage.getItem('basket'));
+  }
+}
+
+// Create a pop-up window with book descriptions
 let popupBg = document.createElement("div");
 popupBg.classList.add('popup__bg');
 wrapper.appendChild(popupBg);
@@ -191,31 +215,38 @@ closePopupButton.addEventListener('click',() => {
     deleteDescription.remove();
 });
 
+// Drag & drop effect
+const toBag = document.querySelector('.bag');
+const bookCards = document.querySelectorAll('.card');
 
+toBag.ondragover = allowDrop;
 
-function addToBacket(event) {
-    //добавляем товар в корзину
-    if (event.target.classList.contains('to-bag')) {
-        let idItem = event.target.id;
-        if (basket[idItem] !== undefined) {
-            basket[idItem]++;
-        }
-        else {
-            basket[idItem] = 1;
-        }
-    }
-    localStorage.setItem('basket', JSON.stringify(basket) );    
-}
+function allowDrop(event) {
+  event.preventDefault();
+};
 
-/*const confirmBtn = document.createElement('button');
-confirmBtn.innerHTML = 'Confirm order';
-confirmBtn.classList.add('confirm');
-sidebar.appendChild(confirmBtn);
+toBag.ondrop = drop;
 
-const makeOrder = document.querySelector(".confirm");
+bookCards.forEach((card) => {
+  card.ondragstart = drag;
+});
 
-makeOrder.addEventListener('click',(e) => {
-    e.preventDefault();
-    document.querySelector(".form__bg").classList.add('active');
-    document.querySelector(".form").classList.add('active');
-});*/
+function drag(event) {
+  event.dataTransfer.setData('id', event.target.id);
+  setTimeout(() => {
+    toBag.classList.add('hovered');
+  }, 0);
+};
+
+function drop(event) {
+  let idItem = event.dataTransfer.getData('id');
+  console.log(idItem);
+  if (basket[idItem] !== undefined) {
+    basket[idItem]++;
+  }
+  else {
+    basket[idItem] = 1;
+  }
+  localStorage.setItem('basket', JSON.stringify(basket));
+  toBag.classList.remove('hovered');   
+};

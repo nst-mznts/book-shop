@@ -110,85 +110,103 @@ checkBasket(); // Check basket in the localStorage
 showBasket(); // Display items on the page
 
 function showBasket() {
-    let keys = Object.keys(basket);
-    for (let i = 0, l = keys.length; i < l; i++) {
-        let miniCard = document.createElement('div');
-        miniCard.classList.add('miniCard');
-        miniCard.id = keys[i];
-        body.appendChild(miniCard);
-        let bookImg = document.createElement('img');
-        bookImg.src = books[i].imageLink;
-        miniCard.appendChild(bookImg);
-        let textWrapper = document.createElement('div');
-        textWrapper.classList.add('textWrapper');
-        miniCard.appendChild(textWrapper);
-        let bookAuthor = document.createElement('h4');
-        bookAuthor.innerHTML = books[i].author;
-        textWrapper.appendChild(bookAuthor);
-        let bookTitle = document.createElement('p');
-        bookTitle.innerHTML = books[i].title;
-        textWrapper.appendChild(bookTitle);
-        let countWrapper = document.createElement('div');
-        countWrapper.classList.add('countWrapper');
-        miniCard.appendChild(countWrapper);
-        let minusGood = document.createElement('button');
-        minusGood.innerHTML = '-';
-        minusGood.id = keys[i];
-        countWrapper.appendChild(minusGood);
-        let count = document.createElement('p');
-        count.innerHTML = basket[keys[i]];
-        countWrapper.appendChild(count);
-        let plusGood = document.createElement('button');
-        plusGood.innerHTML = '+';
-        plusGood.id = keys[i];
-        countWrapper.appendChild(plusGood);
-        let price = document.createElement('p');
-        price.innerHTML = '$' + basket[keys[i]] * books[i].price;
-        countWrapper.appendChild(price);
-        let closeBtn = document.createElement('button');
-        closeBtn.innerHTML = 'X';
-        closeBtn.classList.add('delete-item');
-        closeBtn.id = keys[i];
-        miniCard.appendChild(closeBtn); 
-        plusGood.addEventListener("click", plusGoods);
-        minusGood.addEventListener("click", minusGoods);
-        closeBtn.addEventListener("click", deleteGoods);
-    }
+  checkBasket();
+  let keys = Object.keys(basket);
+  console.log(keys);
+  for (let i = 0, l = keys.length; i < l; i++) {
+    let miniCard = document.createElement('div');
+    miniCard.classList.add('miniCard');
+    miniCard.id = keys[i];
+    body.appendChild(miniCard);
+    let bookImg = document.createElement('img');
+    bookImg.src = books[keys[i]].imageLink;
+    miniCard.appendChild(bookImg);
+    let textWrapper = document.createElement('div');
+    textWrapper.classList.add('textWrapper');
+    miniCard.appendChild(textWrapper);
+    let bookAuthor = document.createElement('h4');
+    bookAuthor.innerHTML = books[keys[i]].author;
+    textWrapper.appendChild(bookAuthor);
+    let bookTitle = document.createElement('p');
+    bookTitle.innerHTML = books[keys[i]].title;
+    textWrapper.appendChild(bookTitle);
+    let countWrapper = document.createElement('div');
+    countWrapper.classList.add('countWrapper');
+    miniCard.appendChild(countWrapper);
+    let minusGood = document.createElement('button');
+    minusGood.innerHTML = '-';
+    minusGood.id = keys[i];
+    countWrapper.appendChild(minusGood);
+    let count = document.createElement('p');
+    count.innerHTML = basket[keys[i]];
+    countWrapper.appendChild(count);
+    let plusGood = document.createElement('button');
+    plusGood.innerHTML = '+';
+    plusGood.id = keys[i];
+    countWrapper.appendChild(plusGood);
+    let price = document.createElement('p');
+    price.innerHTML = '$' + basket[keys[i]] * books[keys[i]].price;
+    countWrapper.appendChild(price);
+    let closeBtn = document.createElement('button');
+    closeBtn.innerHTML = 'X';
+    closeBtn.classList.add('delete-item');
+    closeBtn.id = keys[i];
+    miniCard.appendChild(closeBtn); 
+    plusGood.addEventListener("click", plusGoods);
+    minusGood.addEventListener("click", minusGoods);
+    closeBtn.addEventListener("click", deleteGoods);
+  }
 }
 
 function plusGoods(event) {
-    var articul = event.target.id;
-    basket[articul]++;
-    saveCartToLS(); // Save basket to localStorage
-    showBasket();
+  checkBasket();
+  var articul = event.target.id;
+  basket[articul]++;
+  saveCartToLS(); // Save basket to localStorage
+  showBasket();
 }
 
 function minusGoods(event) {
-    var articul = event.target.id;
-    if (basket[articul] > 1) {
-        basket[articul]--;
-    }
-    else {
-        delete basket[articul];
-    }
-    saveCartToLS();
-    showBasket();
+  checkBasket();
+  var articul = event.target.id;
+  if (basket[articul] > 1) {
+    basket[articul]--;
+  }
+  else {
+    delete basket[articul];
+  }
+  saveCartToLS();
+  showBasket();
 }
 
 function deleteGoods(event) {
-    var articul = event.target.id;
-    delete basket[articul];
-    saveCartToLS();
-    showBasket();
+  checkBasket();
+  var articul = event.target.id;
+  delete basket[articul];
+  saveCartToLS();
+  showBasket();
 }
 
 function checkBasket() {
-    if (localStorage.getItem('basket') !== null) {
-        basket = JSON.parse(localStorage.getItem('basket'));
-    }
-    console.log(basket);
+  if (localStorage.getItem('basket') !== null) {
+    basket = JSON.parse(localStorage.getItem('basket'));
+  }
+  console.log(basket);
 }
 
 function saveCartToLS() {
-    localStorage.setItem('basket', JSON.stringify(basket));
+  localStorage.setItem('basket', JSON.stringify(basket));
 }
+
+/*const confirmBtn = document.createElement('button');
+confirmBtn.innerHTML = 'Confirm order';
+confirmBtn.classList.add('confirm');
+sidebar.appendChild(confirmBtn);
+
+const makeOrder = document.querySelector(".confirm");
+
+makeOrder.addEventListener('click',(e) => {
+  e.preventDefault();
+  document.querySelector(".form__bg").classList.add('active');
+  document.querySelector(".form").classList.add('active');
+});*/
