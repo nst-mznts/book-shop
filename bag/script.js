@@ -106,13 +106,13 @@ logo.src = '../img/logo.png';
 logoContainer.appendChild(logo);
 
 var basket = {}; // Basket
+var sum = 0; // Total amount of goods in the Basket 
 checkBasket(); // Check basket in the localStorage
 showBasket(); // Display items on the page
 
 function showBasket() {
   checkBasket();
   let keys = Object.keys(basket);
-  console.log(keys);
   for (let i = 0, l = keys.length; i < l; i++) {
     let miniCard = document.createElement('div');
     miniCard.classList.add('miniCard');
@@ -146,6 +146,8 @@ function showBasket() {
     countWrapper.appendChild(plusGood);
     let price = document.createElement('p');
     price.innerHTML = '$' + basket[keys[i]] * books[keys[i]].price;
+    price.classList.add('price');
+    price.id = basket[keys[i]] * books[keys[i]].price;
     countWrapper.appendChild(price);
     let closeBtn = document.createElement('button');
     closeBtn.innerHTML = 'X';
@@ -163,6 +165,7 @@ function plusGoods(event) {
   var articul = event.target.id;
   basket[articul]++;
   saveCartToLS(); // Save basket to localStorage
+  location.reload();
   showBasket();
 }
 
@@ -176,6 +179,7 @@ function minusGoods(event) {
     delete basket[articul];
   }
   saveCartToLS();
+  location.reload();
   showBasket();
 }
 
@@ -184,6 +188,7 @@ function deleteGoods(event) {
   var articul = event.target.id;
   delete basket[articul];
   saveCartToLS();
+  location.reload();
   showBasket();
 }
 
@@ -197,6 +202,17 @@ function checkBasket() {
 function saveCartToLS() {
   localStorage.setItem('basket', JSON.stringify(basket));
 }
+
+// Total
+let total = document.createElement('div');
+total.classList.add('total');
+body.appendChild(total);
+
+const prices = document.querySelectorAll('.price');
+prices.forEach((e) => {
+  sum += Number(e.id);
+});
+total.innerHTML = 'Total: $' + sum;
 
 /*const confirmBtn = document.createElement('button');
 confirmBtn.innerHTML = 'Confirm order';
