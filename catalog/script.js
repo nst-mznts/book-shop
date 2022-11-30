@@ -96,6 +96,9 @@ bag.href = '../bag/bag.html';
 bag.classList.add('bag');
 bag.innerText = 'Bag';
 header.appendChild(bag);
+const number = document.createElement('div');
+number.classList.add('number');
+bag.appendChild(number);
 
 const logoContainer = document.createElement('div');
 header.appendChild(logoContainer);
@@ -173,7 +176,8 @@ function addToBacket(event) {
       basket[idItem] = 1;
     }
   }
-  localStorage.setItem('basket', JSON.stringify(basket));    
+  localStorage.setItem('basket', JSON.stringify(basket));
+  document.querySelector('.number').classList.add('active');   
 }
 
 function checkBasket(){
@@ -248,5 +252,6 @@ function drop(event) {
     basket[idItem] = 1;
   }
   localStorage.setItem('basket', JSON.stringify(basket));
-  toBag.classList.remove('hovered');   
+  toBag.classList.remove('hovered');
+  document.querySelector('.number').classList.add('active');
 };

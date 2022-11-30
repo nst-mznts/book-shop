@@ -36,6 +36,24 @@ header a.active {
     color: #fff;
 }
 
+.number {
+    opacity: 0;
+    width: 12px;
+    height: 12px;;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.number.active {
+    opacity: 1;
+    width: 12px;
+    height: 12px;;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: red;
+}
+
 header img {
     width: 42px;
     float: right;
