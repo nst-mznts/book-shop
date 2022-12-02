@@ -179,7 +179,6 @@ function plusGoods(event) {
   var articul = event.target.id;
   basket[articul]++;
   saveCartToLS(); // Save basket to localStorage
-  location.reload();
   showBasket();
 }
 
@@ -193,7 +192,6 @@ function minusGoods(event) {
     delete basket[articul];
   }
   saveCartToLS();
-  location.reload();
   showBasket();
 }
 
@@ -202,7 +200,6 @@ function deleteGoods(event) {
   var articul = event.target.id;
   delete basket[articul];
   saveCartToLS();
-  location.reload();
   showBasket();
 }
 
@@ -213,14 +210,18 @@ function checkBasket() {
   if (localStorage.getItem('basket').length > 2) {
     document.querySelector('.empty-icon').src = '../img/full-icon.svg';
   }
-  console.log(basket);
 }
 
 function saveCartToLS() {
   localStorage.setItem('basket', JSON.stringify(basket));
+  location.reload();
 }
 
-// Total
+/*
+Total
+*/
+
+// Create total sum
 let total = document.createElement('div');
 total.classList.add('total');
 body.appendChild(total);
@@ -231,21 +232,100 @@ prices.forEach((e) => {
 });
 total.innerHTML = 'Total: $' + sum;
 
+// Create a confirmation button that opens the delivery form
 const confirmBtn = document.createElement('button');
 confirmBtn.innerHTML = 'Confirm order';
 confirmBtn.classList.add('confirm');
 total.appendChild(confirmBtn);
 
-// Delivery form
+/* 
+Delivery form
+*/
+
+// Open form
 confirmBtn.addEventListener('click',(e) => {
   e.preventDefault();
   document.querySelector(".form__bg").classList.add('active');
   document.querySelector(".form").classList.add('active');
 });
 
+// Close form
 const clFormBtn = document.querySelector('.close-the-form');
 clFormBtn.addEventListener('click',(e) => {
   e.preventDefault();
   document.querySelector(".form__bg").classList.remove('active');
   document.querySelector(".form").classList.remove('active');
 });
+
+// Validation rules for the delivery form
+const inputs = document.querySelectorAll('input[data-rule]');
+for (let input of inputs) {
+  input.addEventListener('blur', function() {
+    let rule = this.dataset.rule;
+    let value = this.value;
+    let check;
+    let int = /[0-9]/.test(value);
+    let space = /\s/.test(value);
+    switch (rule) {
+      case 'name':
+        if (value.length < 4) {
+          check = false;
+          document.querySelector('.nameer').innerHTML = 'The field is invalid';
+        }
+        else {
+          if (int || space) {
+            check = false;
+            document.querySelector('.nameer').innerHTML = 'The field is invalid';
+          }
+          else {
+            check = true;
+            document.querySelector('.nameer').innerHTML = '';
+          }
+        }
+      break;
+      
+      case 'surname':
+        if (value.length < 5) {
+          check = false;
+          document.querySelector('.surnameer').innerHTML = 'The field is invalid';
+        }
+        else {
+          if (int || space) {
+            check = false;
+            document.querySelector('.surnameer').innerHTML = 'The field is invalid';
+          }
+          else {
+            document.querySelector('.surnameer').innerHTML = '';
+            check = true;
+          }
+        }
+      break;
+
+      case 'date':
+
+      break;
+
+      case 'street':
+        if (value.length >= 5) {
+          check = true;
+          document.querySelector('.streeter').innerHTML = '';
+        }
+        else {
+          check = false;
+          document.querySelector('.streeter').innerHTML = 'The field is invalid';
+        }
+      break;
+
+      case '':
+      break; 
+    }
+    this.classList.remove('valid');
+    this.classList.remove('invalid');
+    if (check) {
+      this.classList.add('valid');
+    }
+    else {
+      this.classList.add('invalid');
+    }
+  });
+}

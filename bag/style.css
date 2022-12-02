@@ -255,3 +255,16 @@ input[type="submit"] {
     height: 20px;
     float: right;
 }
+
+.valid {
+    border: solid 2px #339933;
+}
+
+.invalid {
+    border: solid 2px #FF0000;
+}
+
+.error {
+    color: #FF0000;
+    font-size: 12px;
+}
