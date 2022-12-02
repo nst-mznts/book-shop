@@ -88,17 +88,18 @@ body.appendChild(header);
 const homePage = document.createElement('a');
 homePage.href = '#';
 homePage.innerText = 'Book Catalog';
+homePage.classList.add('catalog');
 homePage.classList.add('active');
 header.appendChild(homePage);
 
 const bag = document.createElement('a');
 bag.href = '../bag/bag.html';
+const icon = document.createElement('img');
+icon.classList.add('empty-icon');
+icon.src = '../img/empty-icon.svg';
+bag.appendChild(icon);
 bag.classList.add('bag');
-bag.innerText = 'Bag';
 header.appendChild(bag);
-const number = document.createElement('div');
-number.classList.add('number');
-bag.appendChild(number);
 
 const logoContainer = document.createElement('div');
 header.appendChild(logoContainer);
@@ -177,12 +178,16 @@ function addToBacket(event) {
     }
   }
   localStorage.setItem('basket', JSON.stringify(basket));
-  document.querySelector('.number').classList.add('active');   
+  document.querySelector('.empty-icon').src = '../img/full-icon.svg';
 }
 
 function checkBasket(){
   if ( localStorage.getItem('basket') !== null) {
+    console.log(localStorage.getItem('basket').length);
     basket = JSON.parse (localStorage.getItem('basket'));
+  }
+  if (localStorage.getItem('basket').length > 2) {
+    document.querySelector('.empty-icon').src = '../img/full-icon.svg';
   }
 }
 
@@ -244,7 +249,6 @@ function drag(event) {
 
 function drop(event) {
   let idItem = event.dataTransfer.getData('id');
-  console.log(idItem);
   if (basket[idItem] !== undefined) {
     basket[idItem]++;
   }

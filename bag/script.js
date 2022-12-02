@@ -226,12 +226,18 @@ total.innerHTML = 'Total: $' + sum;
 const confirmBtn = document.createElement('button');
 confirmBtn.innerHTML = 'Confirm order';
 confirmBtn.classList.add('confirm');
-wrapper.appendChild(confirmBtn);
+total.appendChild(confirmBtn);
 
-const makeOrder = document.querySelector(".confirm");
-
-makeOrder.addEventListener('click',(e) => {
+// Delivery form
+confirmBtn.addEventListener('click',(e) => {
   e.preventDefault();
   document.querySelector(".form__bg").classList.add('active');
   document.querySelector(".form").classList.add('active');
+});
+
+const clFormBtn = document.querySelector('.close-the-form');
+clFormBtn.addEventListener('click',(e) => {
+  e.preventDefault();
+  document.querySelector(".form__bg").classList.remove('active');
+  document.querySelector(".form").classList.remove('active');
 });
