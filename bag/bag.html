@@ -9,6 +9,36 @@
     <link rel="stylesheet" href="../bag/style.css">
 </head>
 <body>
+    <div class="form__bg">
+        <div class="form">
+            <h3 id="title">The delivery form</h3>
+            <h4 id="description">Please fill out the delivery form</h4>
+            <br>
+            <form id="delivery-form" method="POST" action='example.htm'>
+                <div class="left-col">
+                    <label id="name-label" for="name">Name <input type="text" id="name" name="name" required minlength="4" maxlength="80" placeholder="Oliver"/></label>
+                    <label id="name-label" for="surname">Surname <input type="text" id="surname" name="surname" required minlength="5" maxlength="80" placeholder="Evans"/></label>
+                    <label id="name-label" for="date">Delivery date <input type="date" id="date" name="date"/></label>
+                    <label id="name-label" for="street">Street <input type="text" id="street" name="street" required minlength="5" maxlength="80" placeholder="15th Street"/></label>
+                    <label id="number-label" for="house-number">House number <input type="number" name="house-number" id="house-number" min="0" max="1200" placeholder="542" />
+                    <label id="number-label" for="flat-number">Flat number <input type="number" name="flat-number" id="flat-number" min="0" max="1200" placeholder="30" />
+                </div>
+                <div class="right-col">
+                    <label>Choose the payment type:</label>
+                    <label><input type="radio" class="inline" name="payment" value="definitely"> Cash</label>
+                    <label><input type="radio" class="inline" name="payment" value="maybe"> Card</label>
+                    <label>Choose 2 gifts: </label>
+                    <label for="pack"><input id="pack" type="checkbox" class="inline" name="gifts" value="pack">  Pack as a gift</label>
+                    <label for="postcard"><input id="postcard" type="checkbox" class="inline" name="gifts" value="postcard">  Add postcard</label>
+                    <label for="discount"><input id="discount" class="inline" type="checkbox" name="gifts" value="discount">  Provide 2% discount to the next time</label>
+                    <label for="pen-or-pencil"><input id="pen-or-pencil" class="inline" type="checkbox" name="gifts" value="pen-or-pencil">  branded pen or pencil</label>
+                    <br>
+                    <input type="submit" value="Complete" id="submit"/>
+                </div>   
+                
+            </form>
+        </div>
+    </div>  
     <script src="../bag/script.js"></script>   
 </body>
 </html>

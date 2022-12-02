@@ -105,6 +105,15 @@ const logo = document.createElement('img');
 logo.src = '../img/logo.png';
 logoContainer.appendChild(logo);
 
+// Create main
+const main = document.createElement('main');
+body.appendChild(main);
+
+const wrapper = document.createElement('div');
+wrapper.classList.add('main-wrapper');
+wrapper.id = 'main';
+main.appendChild(wrapper);
+
 var basket = {}; // Basket
 var sum = 0; // Total amount of goods in the Basket 
 checkBasket(); // Check basket in the localStorage
@@ -117,7 +126,7 @@ function showBasket() {
     let miniCard = document.createElement('div');
     miniCard.classList.add('miniCard');
     miniCard.id = keys[i];
-    body.appendChild(miniCard);
+    wrapper.appendChild(miniCard);
     let bookImg = document.createElement('img');
     bookImg.src = books[keys[i]].imageLink;
     miniCard.appendChild(bookImg);
@@ -214,10 +223,10 @@ prices.forEach((e) => {
 });
 total.innerHTML = 'Total: $' + sum;
 
-/*const confirmBtn = document.createElement('button');
+const confirmBtn = document.createElement('button');
 confirmBtn.innerHTML = 'Confirm order';
 confirmBtn.classList.add('confirm');
-sidebar.appendChild(confirmBtn);
+wrapper.appendChild(confirmBtn);
 
 const makeOrder = document.querySelector(".confirm");
 
@@ -225,4 +234,4 @@ makeOrder.addEventListener('click',(e) => {
   e.preventDefault();
   document.querySelector(".form__bg").classList.add('active');
   document.querySelector(".form").classList.add('active');
-});*/
+});
