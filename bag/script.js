@@ -88,12 +88,17 @@ body.appendChild(header);
 const homePage = document.createElement('a');
 homePage.href = '../catalog/index.html';
 homePage.innerText = 'Book Catalog';
+homePage.classList.add('catalog');
 header.appendChild(homePage);
 
 const bag = document.createElement('a');
 bag.href = '#';
+const icon = document.createElement('img');
+icon.classList.add('empty-icon');
+icon.src = '../img/empty-icon.svg';
+bag.appendChild(icon);
+bag.classList.add('bag');
 bag.classList.add('active');
-bag.innerText = 'Bag';
 header.appendChild(bag);
 
 const logoContainer = document.createElement('div');
@@ -204,6 +209,9 @@ function deleteGoods(event) {
 function checkBasket() {
   if (localStorage.getItem('basket') !== null) {
     basket = JSON.parse(localStorage.getItem('basket'));
+  }
+  if (localStorage.getItem('basket').length > 2) {
+    document.querySelector('.empty-icon').src = '../img/full-icon.svg';
   }
   console.log(basket);
 }
