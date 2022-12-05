@@ -24,8 +24,10 @@
                     <div class="error dateer"></div>
                     <label id="name-label" for="street">Street <input data-rule="street" type="text" id="street" name="street" required minlength="5" maxlength="80" placeholder="15th Street"/></label>
                     <div class="error streeter"></div>
-                    <label id="number-label" for="house-number">House number <input type="number" name="house-number" id="house-number" min="0" max="1200" placeholder="542" />
-                    <label id="number-label" for="flat-number">Flat number <input data-rule="number" type="number" name="flat-number" id="flat-number" min="0" max="1200" placeholder="30" />
+                    <label id="number-label" for="house-number">House number <input data-rule="house-number" type="number" name="house-number" id="house-number" min="0" max="1200" placeholder="542" />
+                    <div class="error houseer"></div>
+                    <label id="number-label" for="flat-number">Flat number <input data-rule="flat-number" type="text" name="flat-number" id="flat-number" placeholder="1-30" />
+                    <div class="error flater"></div>
                 </div>
                 <div class="right-col">
                     <label>Choose the payment type:</label>

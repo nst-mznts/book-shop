@@ -259,6 +259,7 @@ clFormBtn.addEventListener('click',(e) => {
 
 // Validation rules for the delivery form
 const inputs = document.querySelectorAll('input[data-rule]');
+const adress = [];
 for (let input of inputs) {
   input.addEventListener('blur', function() {
     let rule = this.dataset.rule;
@@ -280,6 +281,7 @@ for (let input of inputs) {
           else {
             check = true;
             document.querySelector('.nameer').innerHTML = '';
+            adress.push(value);
           }
         }
       break;
@@ -295,29 +297,37 @@ for (let input of inputs) {
             document.querySelector('.surnameer').innerHTML = 'The field is invalid';
           }
           else {
-            document.querySelector('.surnameer').innerHTML = '';
             check = true;
+            document.querySelector('.surnameer').innerHTML = '';
+            adress.push(value);
           }
         }
       break;
 
-      case 'date':
-
-      break;
+      //case 'date':
+      //break;
 
       case 'street':
         if (value.length >= 5) {
           check = true;
           document.querySelector('.streeter').innerHTML = '';
+          adress.push(value);
+          console.log(adress);
+
+
         }
         else {
           check = false;
           document.querySelector('.streeter').innerHTML = 'The field is invalid';
         }
       break;
+    
 
-      case '':
-      break; 
+      //case 'house-number':
+      //break;
+
+      //case 'flat-number':
+      //break; 
     }
     this.classList.remove('valid');
     this.classList.remove('invalid');
@@ -329,3 +339,16 @@ for (let input of inputs) {
     }
   });
 }
+
+document.getElementById('submit').addEventListener('click',() => {
+  var myWindow = window.open("../confirm/example.htm", "_self", "");
+  myWindow.document.write("<h1 align=center>Thank you for your order!</h1>");
+  myWindow.document.write("<p align=center>The delivery address is </p>");
+  myWindow.document.write(adress);
+  myWindow.document.write("<br>");
+  myWindow.document.write("<br>");
+  let image = "<img src='../img/stack-of-books.png'  width=200 height=200>";
+  myWindow.document.write(image);
+});
+
+    
