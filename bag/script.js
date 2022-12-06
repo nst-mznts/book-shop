@@ -238,6 +238,16 @@ confirmBtn.innerHTML = 'Confirm order';
 confirmBtn.classList.add('confirm');
 total.appendChild(confirmBtn);
 
+function disableBtn() {
+  if (localStorage.getItem('basket').length > 2) {
+    document.querySelector('.confirm').disabled = false;
+  }
+  else {
+    document.querySelector('.confirm').disabled = true;
+  }
+};
+disableBtn();
+
 /* 
 Delivery form
 */
@@ -281,6 +291,7 @@ for (let input of inputs) {
           else {
             check = true;
             document.querySelector('.nameer').innerHTML = '';
+            adress.push('Customer: ');
             adress.push(value);
           }
         }
@@ -299,35 +310,60 @@ for (let input of inputs) {
           else {
             check = true;
             document.querySelector('.surnameer').innerHTML = '';
-            adress.push(value);
+            adress.push(value+'.');
           }
         }
       break;
 
       //case 'date':
+      /*function validDate() {
+        const inputDate = new Date(document.getElementById('inputDate').value).toISOString().slice(0, 10); // введенная дата (обрезанная до год-месяц-день)
+        const currentDate = new Date().toISOString().slice(0, 10); // текущая дата (обрезанная до год-месяц-день)
+        const res = (inputDate < currentDate); // сравниваем...
+        (res) ? alert('ок') : alert('не ок'); // выводим ок или не ок
+        return res; // возвращаем true или false
+      }*/
       //break;
 
       case 'street':
         if (value.length >= 5) {
           check = true;
           document.querySelector('.streeter').innerHTML = '';
+          adress.push('Delivery adress: ');
           adress.push(value);
-          console.log(adress);
-
-
         }
         else {
           check = false;
           document.querySelector('.streeter').innerHTML = 'The field is invalid';
         }
+      break; 
+
+      case 'house-number':
+      if (/(?<![-\d])\d+/g.test(value)) {
+        check = true;
+        document.querySelector('.houseer').innerHTML = '';
+        adress.push(value);
+        adress.push('house');
+      }
+      else {
+        check = false;
+        document.querySelector('.houseer').innerHTML = 'The field is invalid';
+      }
       break;
-    
 
-      //case 'house-number':
-      //break;
-
-      //case 'flat-number':
-      //break; 
+      case 'flat-number':
+        if (/(?<![-\d])\d+/g.test(value)) {
+          check = true;
+          document.querySelector('.flater').innerHTML = '';
+          adress.push(value);
+          adress.push('flat');
+          console.log(adress);
+        }
+        else {
+          check = false;
+          document.querySelector('.flater').innerHTML = 'The field is invalid';
+        }
+      break; 
     }
     this.classList.remove('valid');
     this.classList.remove('invalid');
@@ -340,15 +376,14 @@ for (let input of inputs) {
   });
 }
 
+
+// Display the delivery address on a new page when user clicks on Complete button
 document.getElementById('submit').addEventListener('click',() => {
   var myWindow = window.open("../confirm/example.htm", "_self", "");
-  myWindow.document.write("<h1 align=center>Thank you for your order!</h1>");
-  myWindow.document.write("<p align=center>The delivery address is </p>");
-  myWindow.document.write(adress);
+  myWindow.document.write("<h1>Thank you for your order!</h1>");
+  myWindow.document.write(adress.join(' '));
   myWindow.document.write("<br>");
   myWindow.document.write("<br>");
   let image = "<img src='../img/stack-of-books.png'  width=200 height=200>";
   myWindow.document.write(image);
 });
-
-    

@@ -14,34 +14,37 @@
             <button class="close-the-form">X</button>
             <h3 id="title">Please fill out the delivery form</h3>
             <br>
-            <form id="delivery-form" method="POST" action='../confirm/example.htm'>
+            <form id="delivery-form" method="POST" action="../confirm/example.htm">
                 <div class="left-col">
-                    <label id="name-label" for="name">Name <input data-rule="name" type="text" id="name" name="name" required placeholder="Oliver"/></label>
+                    <label id="name-label" for="name">Name <input data-rule="name" type="text" id="name" name="name" placeholder="Oliver" required/></label>
                     <div class="error nameer"></div>
-                    <label id="name-label" for="surname">Surname <input data-rule="surname" type="text" id="surname" name="surname" required placeholder="Evans"/></label>
+                    <label id="name-label" for="surname">Surname <input data-rule="surname" type="text" id="surname" name="surname" placeholder="Evans" required/></label>
                     <div class="error surnameer"></div>
-                    <label id="name-label" for="date">Delivery date <input data-rule="date" type="date" id="date" name="date"/></label>
+                    <label id="name-label" for="date">Delivery date <input data-rule="date" type="date" id="date" name="date" min="2022-12-05" max="2022-12-31" required/></label>
                     <div class="error dateer"></div>
-                    <label id="name-label" for="street">Street <input data-rule="street" type="text" id="street" name="street" required minlength="5" maxlength="80" placeholder="15th Street"/></label>
+                    <label id="name-label" for="street">Street <input data-rule="street" type="text" id="street" name="street" minlength="5" maxlength="80" placeholder="15th Street" required/></label>
                     <div class="error streeter"></div>
-                    <label id="number-label" for="house-number">House number <input data-rule="house-number" type="number" name="house-number" id="house-number" min="0" max="1200" placeholder="542" />
+                    <label id="number-label" for="house-number">House number <input data-rule="house-number" type="number" name="house-number" id="house-number" min="0" max="1200" placeholder="542" required/></label>
                     <div class="error houseer"></div>
-                    <label id="number-label" for="flat-number">Flat number <input data-rule="flat-number" type="text" name="flat-number" id="flat-number" placeholder="1-30" />
+                    <label id="number-label" for="flat-number">Flat number <input data-rule="flat-number" type="text" name="flat-number" id="flat-number" placeholder="1-30" required/></label>
                     <div class="error flater"></div>
                 </div>
-                <div class="right-col">
-                    <label>Choose the payment type:</label>
-                    <label><input type="radio" class="inline" name="payment" value="Cash"> Cash</label>
-                    <label><input type="radio" class="inline" name="payment" value="Card"> Card</label>
-                    <label>Choose 2 gifts: </label>
-                    <label for="pack"><input id="pack" type="checkbox" class="inline" name="gifts" value="pack">  Pack as a gift</label>
-                    <label for="postcard"><input id="postcard" type="checkbox" class="inline" name="gifts" value="postcard">  Add postcard</label>
-                    <label for="discount"><input id="discount" class="inline" type="checkbox" name="gifts" value="discount">  Provide 2% discount to the next time</label>
-                    <label for="pen-or-pencil"><input id="pen-or-pencil" class="inline" type="checkbox" name="gifts" value="pen-or-pencil">  branded pen or pencil</label>
+                <div class="right-col">                 
+                    <fieldset>
+                        <legend>Choose the payment type:</legend>
+                        <label><input type="radio" class="inline" name="payment" value="cash" checked> Cash</label>
+                        <label><input type="radio" class="inline" name="payment" value="card" > Card</label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Choose 2 gifts (optional):</legend>
+                        <label for="pack"><input id="pack" type="checkbox" class="inline" name="gifts" value="pack">  Pack as a gift</label>
+                        <label for="postcard"><input id="postcard" type="checkbox" class="inline" name="gifts" value="postcard">  Add postcard</label>
+                        <label for="discount"><input id="discount" class="inline" type="checkbox" name="gifts" value="discount">  Provide 2% discount to the next time</label>
+                        <label for="pen-or-pencil"><input id="pen-or-pencil" class="inline" type="checkbox" name="gifts" value="pen-or-pencil">  branded pen or pencil</label>
+                    </fieldset>
                     <br>
                     <input type="submit" value="Complete" id="submit"/>
-                </div>   
-                
+                </div>                
             </form>
         </div>
     </div>  
