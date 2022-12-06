@@ -257,6 +257,12 @@ input[type="submit"] {
     border: none;
 }
 
+#submit:disabled {
+    border: none;
+    background-color: #366B44;
+    color: #fff;
+}
+
 .close-the-form {
     width: 20px;
     height: 20px;

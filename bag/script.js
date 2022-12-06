@@ -270,6 +270,7 @@ clFormBtn.addEventListener('click',(e) => {
 // Validation rules for the delivery form
 const inputs = document.querySelectorAll('input[data-rule]');
 let adress = [];
+
 for (let input of inputs) {
   input.addEventListener('blur', function() {
     let rule = this.dataset.rule;
@@ -277,6 +278,7 @@ for (let input of inputs) {
     let check;
     let int = /[0-9]/.test(value);
     let space = /\s/.test(value);
+
     switch (rule) {
       case 'name':
         if (value.length < 4) {
@@ -371,6 +373,7 @@ for (let input of inputs) {
         }
       break; 
     }
+
     this.classList.remove('valid');
     this.classList.remove('invalid');
     if (check) {
@@ -380,8 +383,20 @@ for (let input of inputs) {
       this.classList.add('invalid');
     }
   });
-}
+};
 
+// Checking that all the fields of the form are filled out
+const form = document.getElementById('delivery-form');
+const formSubmit = document.getElementById('submit');
+
+form.addEventListener('change', changeFormHandler);
+
+function changeFormHandler() {
+  console.log(form.checkValidity());
+  if (form.checkValidity()) {
+    formSubmit.removeAttribute('disabled');
+  }
+};
 
 // Display the delivery address on a new page when user clicks on Complete button
 document.getElementById('submit').addEventListener('click',() => {

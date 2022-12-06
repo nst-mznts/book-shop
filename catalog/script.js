@@ -257,5 +257,5 @@ function drop(event) {
   }
   localStorage.setItem('basket', JSON.stringify(basket));
   toBag.classList.remove('hovered');
-  document.querySelector('.number').classList.add('active');
+  document.querySelector('.empty-icon').src = '../img/full-icon.svg';
 };
