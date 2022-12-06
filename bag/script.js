@@ -269,7 +269,7 @@ clFormBtn.addEventListener('click',(e) => {
 
 // Validation rules for the delivery form
 const inputs = document.querySelectorAll('input[data-rule]');
-const adress = [];
+let adress = [];
 for (let input of inputs) {
   input.addEventListener('blur', function() {
     let rule = this.dataset.rule;
@@ -315,15 +315,21 @@ for (let input of inputs) {
         }
       break;
 
-      //case 'date':
-      /*function validDate() {
-        const inputDate = new Date(document.getElementById('inputDate').value).toISOString().slice(0, 10); // введенная дата (обрезанная до год-месяц-день)
+      case 'date':
+        const inputDate = new Date(value).toISOString().slice(0, 10); // введенная дата (обрезанная до год-месяц-день)
         const currentDate = new Date().toISOString().slice(0, 10); // текущая дата (обрезанная до год-месяц-день)
-        const res = (inputDate < currentDate); // сравниваем...
-        (res) ? alert('ок') : alert('не ок'); // выводим ок или не ок
-        return res; // возвращаем true или false
-      }*/
-      //break;
+        console.log(inputDate);
+        console.log(currentDate);
+        if (inputDate <= currentDate) {
+          check = false;
+          document.querySelector('.dateer').innerHTML = 'The field is invalid';
+        }
+        else {
+          check = true;
+          document.querySelector('.dateer').innerHTML = '';
+        }
+        
+      break;
 
       case 'street':
         if (value.length >= 5) {
