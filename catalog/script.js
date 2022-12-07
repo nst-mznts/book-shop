@@ -5,7 +5,7 @@ const books = [{
     "title": "JavaScript: The Good Parts: The Good Parts",
     "price": 30,
     "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
-  },
+    },
     {
       "number": 1,
       "author": "David Herman",
@@ -80,7 +80,9 @@ const books = [{
     }
 ]
 
-// Create header
+/*
+Create header
+*/
 const body = document.body;
 const header = document.createElement('header');
 body.appendChild(header);
@@ -110,7 +112,9 @@ const logo = document.createElement('img');
 logo.src = '../img/logo.png';
 logoContainer.appendChild(logo);
 
-// Create main
+/*
+Create main
+*/
 const main = document.createElement('main');
 body.appendChild(main);
 
@@ -164,7 +168,7 @@ function loadGoods() {
     showMore.id = i;
     div.appendChild(showMore);
   }
-}
+};
 
 // Add items to basket
 function addToBacket(event) {
@@ -181,6 +185,7 @@ function addToBacket(event) {
   document.querySelector('.empty-icon').src = '../img/full-icon.svg';
 }
 
+// Check basket in the localStorage
 function checkBasket(){
   if ( localStorage.getItem('basket') !== null) {
     console.log(localStorage.getItem('basket').length);
@@ -191,7 +196,9 @@ function checkBasket(){
   }
 }
 
-// Create a pop-up window with book descriptions
+/*
+Create a pop-up window with book descriptions
+*/
 let popupBg = document.createElement("div");
 popupBg.classList.add('popup__bg');
 wrapper.appendChild(popupBg);
@@ -204,6 +211,7 @@ closePopupButton.classList.add('close-popup');
 closePopupButton.innerText = 'X';
 popup.appendChild(closePopupButton);
 
+// Open pop-up
 openPopupButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
         e.preventDefault();
@@ -221,6 +229,7 @@ openPopupButtons.forEach((button) => {
     })
 });
 
+// Close pop-up
 closePopupButton.addEventListener('click',() => {
     popupBg.classList.remove('active');
     popup.classList.remove('active');
@@ -230,7 +239,9 @@ closePopupButton.addEventListener('click',() => {
     deleteDescription.remove();
 });
 
-// Drag & drop effect
+/*
+Drag & drop effect
+*/
 const toBag = document.querySelector('.bag');
 const bookCards = document.querySelectorAll('.card');
 
