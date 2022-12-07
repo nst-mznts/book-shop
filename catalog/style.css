@@ -69,7 +69,7 @@ header h1 {
 
 main {
     width: 100%;
-    margin-top: 70px;
+    margin: 70px auto;
     overflow: hidden;
 }
 
@@ -78,9 +78,9 @@ main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px 40px;
-    width: 990px;
-    height: 1900px;
+    width: 100%;
 }
 
 .card {
