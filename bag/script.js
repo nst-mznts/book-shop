@@ -5,7 +5,7 @@ const books = [{
     "title": "JavaScript: The Good Parts: The Good Parts",
     "price": 30,
     "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
-  },
+    },
     {
       "number": 1,
       "author": "David Herman",
@@ -80,7 +80,9 @@ const books = [{
     }
 ]
 
-// Create header
+/*
+Create header
+*/ 
 const body = document.body;
 const header = document.createElement('header');
 body.appendChild(header);
@@ -110,7 +112,9 @@ const logo = document.createElement('img');
 logo.src = '../img/logo.png';
 logoContainer.appendChild(logo);
 
-// Create main
+/*
+Create main
+*/
 const main = document.createElement('main');
 body.appendChild(main);
 
@@ -172,16 +176,18 @@ function showBasket() {
     minusGood.addEventListener("click", minusGoods);
     closeBtn.addEventListener("click", deleteGoods);
   }
-}
+};
 
+// Increase items
 function plusGoods(event) {
   checkBasket();
   var articul = event.target.id;
   basket[articul]++;
-  saveCartToLS(); // Save basket to localStorage
+  saveCartToLS();
   showBasket();
 }
 
+// Reduce items
 function minusGoods(event) {
   checkBasket();
   var articul = event.target.id;
@@ -195,6 +201,7 @@ function minusGoods(event) {
   showBasket();
 }
 
+// Delete items
 function deleteGoods(event) {
   checkBasket();
   var articul = event.target.id;
@@ -203,6 +210,7 @@ function deleteGoods(event) {
   showBasket();
 }
 
+// Check basket in the localStorage
 function checkBasket() {
   if (localStorage.getItem('basket') !== null) {
     basket = JSON.parse(localStorage.getItem('basket'));
@@ -212,6 +220,7 @@ function checkBasket() {
   }
 }
 
+// Save basket to localStorage
 function saveCartToLS() {
   localStorage.setItem('basket', JSON.stringify(basket));
   location.reload();
@@ -270,6 +279,10 @@ clFormBtn.addEventListener('click',(e) => {
 // Validation rules for the delivery form
 const inputs = document.querySelectorAll('input[data-rule]');
 let adress = [];
+adress[0] = 'Customer: ';
+adress[3] = 'Delivery adress: ';
+adress[6] = 'house';
+adress[8] = 'flat';
 
 for (let input of inputs) {
   input.addEventListener('blur', function() {
@@ -293,8 +306,7 @@ for (let input of inputs) {
           else {
             check = true;
             document.querySelector('.nameer').innerHTML = '';
-            adress.push('Customer: ');
-            adress.push(value);
+            adress[1] = value;
           }
         }
       break;
@@ -312,7 +324,7 @@ for (let input of inputs) {
           else {
             check = true;
             document.querySelector('.surnameer').innerHTML = '';
-            adress.push(value+'.');
+            adress[2] = value;
           }
         }
       break;
@@ -337,8 +349,7 @@ for (let input of inputs) {
         if (value.length >= 5) {
           check = true;
           document.querySelector('.streeter').innerHTML = '';
-          adress.push('Delivery adress: ');
-          adress.push(value);
+          adress[4] = value;
         }
         else {
           check = false;
@@ -350,8 +361,7 @@ for (let input of inputs) {
       if (/(?<![-\d])\d+/g.test(value)) {
         check = true;
         document.querySelector('.houseer').innerHTML = '';
-        adress.push(value);
-        adress.push('house');
+        adress[5] = value;
       }
       else {
         check = false;
@@ -363,9 +373,7 @@ for (let input of inputs) {
         if (/(?<![-\d])\d+/g.test(value)) {
           check = true;
           document.querySelector('.flater').innerHTML = '';
-          adress.push(value);
-          adress.push('flat');
-          console.log(adress);
+          adress[7] = value;
         }
         else {
           check = false;
