@@ -385,15 +385,22 @@ for (let input of inputs) {
   });
 };
 
-// Checking that all the fields of the form are filled out
+// Checking that all the fields of the form are filled out with valid infotmation
 const form = document.getElementById('delivery-form');
 const formSubmit = document.getElementById('submit');
-
+const formInputs = document.querySelectorAll('input[data-rule]');
 form.addEventListener('change', changeFormHandler);
 
 function changeFormHandler() {
   console.log(form.checkValidity());
-  if (form.checkValidity()) {
+  let res=1;
+  for (let field of formInputs) {
+    if (field.classList.contains('valid')) {
+      res+=1;
+    }
+  }
+  console.log(res);
+  if (res === 6) {
     formSubmit.removeAttribute('disabled');
   }
 };
