@@ -210,6 +210,10 @@ openPopupButtons.forEach((button) => {
         popupBg.classList.add('active');
         popup.classList.add('active');
         let id = e.target.id;
+        let titleDescription = document.createElement('h5');
+        titleDescription.classList.add('active-h5');
+        titleDescription.innerHTML = books[id].title;
+        popup.appendChild(titleDescription); 
         let description = document.createElement('p');
         description.classList.add('active-p');
         description.innerHTML = books[id].description;
@@ -220,6 +224,8 @@ openPopupButtons.forEach((button) => {
 closePopupButton.addEventListener('click',() => {
     popupBg.classList.remove('active');
     popup.classList.remove('active');
+    let deleteTitle = document.querySelector(".active-h5");
+    deleteTitle.remove();
     let deleteDescription = document.querySelector(".active-p");
     deleteDescription.remove();
 });
