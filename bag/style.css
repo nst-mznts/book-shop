@@ -263,9 +263,11 @@ input[type="submit"] {
     min-width: 300px;
     color: #fff;
     border: none;
+    cursor: pointer;
 }
 
 #submit:disabled {
+    cursor: default;
     border: none;
     background-color: #366B44;
     color: #fff;

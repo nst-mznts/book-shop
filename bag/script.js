@@ -422,4 +422,9 @@ document.getElementById('submit').addEventListener('click',() => {
   myWindow.document.write("<br>");
   let image = "<img src='../img/stack-of-books.png'  width=200 height=200>";
   myWindow.document.write(image);
+  myWindow.document.write("<br>");
+  myWindow.document.write("<br>");
+  myWindow.document.write("<form><input type=button value='Return' onclick='history.back()'></form>");
+  basket = {};
+  localStorage.setItem('basket', JSON.stringify(basket));
 });
