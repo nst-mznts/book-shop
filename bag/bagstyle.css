@@ -297,10 +297,6 @@ input[type="submit"] {
         display: none;
     }
     
-    main {
-        margin: 80px auto;
-    }
-    
     .popup {
         width: 400px;
         padding: 10px;
@@ -315,5 +311,13 @@ input[type="submit"] {
         width: 300px;
         font-size: 14px;
         margin-bottom: 6px;
+    }
+    
+    .form {
+        overflow-y: scroll;
+    }
+    
+    form {
+        flex-direction: column;
     }
 }
