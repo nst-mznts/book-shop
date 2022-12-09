@@ -289,9 +289,7 @@ main {
 }
 
 @media screen and (max-width: 500px) {
-    .empty-icon {
-        width: 20px;
-        height: 20px;
-        margin: 0;
+    h1 {
+        font-size: 26px;
     }
 }
