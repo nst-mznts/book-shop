@@ -98,7 +98,7 @@ const bag = document.createElement('a');
 bag.href = './bag/bag.html';
 const icon = document.createElement('img');
 icon.classList.add('empty-icon');
-icon.src = './img/empty-icon.svg';
+icon.src = 'img/empty-icon.svg';
 bag.appendChild(icon);
 bag.classList.add('bag');
 header.appendChild(bag);
