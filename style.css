@@ -114,6 +114,7 @@ main {
 }
 
 .wrap h4 {
+    font-size: 14px;
     margin-bottom: 8px;
     height: 37px;
 }
@@ -121,6 +122,7 @@ main {
 .wrap h5 {
     margin-top: 0;
     margin-bottom: 8px;
+    font-size: 12px;
     color: #999999;
     height: 37px;
 }
@@ -306,12 +308,12 @@ main {
     
     .popup p {
         width: 200px;
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .active-h5 {
-        width: 300px;
-        font-size: 14px;
+        width: 200px;
+        font-size: 12px;
         margin-bottom: 6px;
     }
 }
