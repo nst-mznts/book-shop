@@ -60,6 +60,7 @@ header div {
     float: right;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
@@ -291,5 +292,20 @@ main {
 @media screen and (max-width: 500px) {
     header h1 {
         font-size: 20px;
+    }
+    
+    .popup {
+        width: 200px;
+        padding: 10px;
+    }
+    
+    .popup p {
+        width: 100px;
+    }
+
+    .active-h5 {
+        width: 100px;
+        font-size: 12px;
+        margin-bottom: 6px;
     }
 }
