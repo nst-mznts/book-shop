@@ -95,7 +95,7 @@ homePage.classList.add('active');
 header.appendChild(homePage);
 
 const bag = document.createElement('a');
-bag.href = '../bag/bag.html';
+bag.href = './bag/bag.html';
 const icon = document.createElement('img');
 icon.classList.add('empty-icon');
 icon.src = '../img/empty-icon.svg';

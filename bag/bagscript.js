@@ -88,7 +88,7 @@ const header = document.createElement('header');
 body.appendChild(header);
 
 const homePage = document.createElement('a');
-homePage.href = '../catalog/index.html';
+homePage.href = '../index.html';
 homePage.innerText = 'Book Catalog';
 homePage.classList.add('catalog');
 header.appendChild(homePage);
