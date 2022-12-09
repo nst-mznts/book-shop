@@ -98,7 +98,7 @@ const bag = document.createElement('a');
 bag.href = './bag/bag.html';
 const icon = document.createElement('img');
 icon.classList.add('empty-icon');
-icon.src = '../img/empty-icon.svg';
+icon.src = './img/empty-icon.svg';
 bag.appendChild(icon);
 bag.classList.add('bag');
 header.appendChild(bag);
@@ -109,7 +109,7 @@ const textLogo = document.createElement('h1');
 textLogo.innerText = 'BOOK SHOP';
 logoContainer.appendChild(textLogo);
 const logo = document.createElement('img');
-logo.src = '../img/logo.png';
+logo.src = './img/logo.png';
 logoContainer.appendChild(logo);
 
 /*
@@ -182,7 +182,7 @@ function addToBacket(event) {
     }
   }
   localStorage.setItem('basket', JSON.stringify(basket));
-  document.querySelector('.empty-icon').src = '../img/full-icon.svg';
+  document.querySelector('.empty-icon').src = './img/full-icon.svg';
 }
 
 // Check basket in the localStorage
@@ -192,7 +192,7 @@ function checkBasket(){
     basket = JSON.parse (localStorage.getItem('basket'));
   }
   if (localStorage.getItem('basket').length > 2) {
-    document.querySelector('.empty-icon').src = '../img/full-icon.svg';
+    document.querySelector('.empty-icon').src = './img/full-icon.svg';
   }
 }
 
@@ -274,5 +274,5 @@ function drop(event) {
   }
   localStorage.setItem('basket', JSON.stringify(basket));
   toBag.classList.remove('hovered');
-  document.querySelector('.empty-icon').src = '../img/full-icon.svg';
+  document.querySelector('.empty-icon').src = './img/full-icon.svg';
 };
