@@ -297,21 +297,13 @@ input[type="submit"] {
     header h1 {
         display: none;
     }
-    
-    .popup {
-        width: 400px;
-        padding: 10px;
-    }
-    
-    .popup p {
-        width: 300px;
+
+    .miniCard h4 {
         font-size: 12px;
     }
 
-    .active-h5 {
-        width: 300px;
-        font-size: 14px;
-        margin-bottom: 6px;
+    .miniCard p {
+        font-size: 10px;
     }
     
     .form {
