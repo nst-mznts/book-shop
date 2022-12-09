@@ -299,12 +299,12 @@ main {
     }
     
     .popup {
-        width: 400px;
+        width: 300px;
         padding: 10px;
     }
     
     .popup p {
-        width: 300px;
+        width: 200px;
         font-size: 12px;
     }
 
