@@ -178,14 +178,49 @@ function showBasket() {
   }
 };
 
+// Display buttons to increase and decrease the number of items on the page
+function showBtns() {
+  checkBasket();
+  let keys = Object.keys(basket);
+  for (let i = 0, l = keys.length; i < l; i++) {
+    let countWrapper = document.createElement('div');
+    countWrapper.classList.add('countWrapper');
+    miniCard.appendChild(countWrapper);
+    let minusGood = document.createElement('button');
+    minusGood.innerHTML = '-';
+    minusGood.id = keys[i];
+    countWrapper.appendChild(minusGood);
+    let count = document.createElement('p');
+    count.innerHTML = basket[keys[i]];
+    countWrapper.appendChild(count);
+    let plusGood = document.createElement('button');
+    plusGood.innerHTML = '+';
+    plusGood.id = keys[i];
+    countWrapper.appendChild(plusGood);
+    let price = document.createElement('p');
+    price.innerHTML = '$' + basket[keys[i]] * books[keys[i]].price;
+    price.classList.add('price');
+    price.id = basket[keys[i]] * books[keys[i]].price;
+    countWrapper.appendChild(price);
+    let closeBtn = document.createElement('button');
+    closeBtn.innerHTML = 'X';
+    closeBtn.classList.add('delete-item');
+    closeBtn.id = keys[i];
+    miniCard.appendChild(closeBtn); 
+    plusGood.addEventListener("click", plusGoods);
+    minusGood.addEventListener("click", minusGoods);
+    closeBtn.addEventListener("click", deleteGoods);
+  }
+};
+
 // Increase items
 function plusGoods(event) {
   checkBasket();
   var articul = event.target.id;
   basket[articul]++;
   saveCartToLS();
-  showBasket();
-}
+  showBtns();
+};
 
 // Reduce items
 function minusGoods(event) {
@@ -198,8 +233,8 @@ function minusGoods(event) {
     delete basket[articul];
   }
   saveCartToLS();
-  showBasket();
-}
+  showBtns();
+};
 
 // Delete items
 function deleteGoods(event) {
@@ -207,8 +242,8 @@ function deleteGoods(event) {
   var articul = event.target.id;
   delete basket[articul];
   saveCartToLS();
-  showBasket();
-}
+  showBtns();
+};
 
 // Check basket in the localStorage
 function checkBasket() {
@@ -218,13 +253,13 @@ function checkBasket() {
   if (localStorage.getItem('basket').length > 2) {
     document.querySelector('.empty-icon').src = '../img/full-icon.svg';
   }
-}
+};
 
 // Save basket to localStorage
 function saveCartToLS() {
   localStorage.setItem('basket', JSON.stringify(basket));
   location.reload();
-}
+};
 
 /*
 Total
@@ -330,8 +365,8 @@ for (let input of inputs) {
       break;
 
       case 'date':
-        const inputDate = new Date(value).toISOString().slice(0, 10); // введенная дата (обрезанная до год-месяц-день)
-        const currentDate = new Date().toISOString().slice(0, 10); // текущая дата (обрезанная до год-месяц-день)
+        const inputDate = new Date(value).toISOString().slice(0, 10); // Entered date (year-month-day)
+        const currentDate = new Date().toISOString().slice(0, 10); // Current date (year-month-day)
         console.log(inputDate);
         console.log(currentDate);
         if (inputDate <= currentDate) {
@@ -380,7 +415,7 @@ for (let input of inputs) {
           document.querySelector('.flater').innerHTML = 'The field is invalid';
         }
       break; 
-    }
+    };
 
     this.classList.remove('valid');
     this.classList.remove('invalid');
