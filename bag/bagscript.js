@@ -331,12 +331,12 @@ for (let input of inputs) {
       case 'name':
         if (value.length < 4) {
           check = false;
-          document.querySelector('.nameer').innerHTML = 'The field is invalid';
+          document.querySelector('.nameer').innerHTML = 'The name must be at least 4 characters long';
         }
         else {
           if (int || space) {
             check = false;
-            document.querySelector('.nameer').innerHTML = 'The field is invalid';
+            document.querySelector('.nameer').innerHTML = 'The name should not contain spaces or numbers';
           }
           else {
             check = true;
@@ -349,12 +349,12 @@ for (let input of inputs) {
       case 'surname':
         if (value.length < 5) {
           check = false;
-          document.querySelector('.surnameer').innerHTML = 'The field is invalid';
+          document.querySelector('.surnameer').innerHTML = 'The surname must be at least 5 characters long';
         }
         else {
           if (int || space) {
             check = false;
-            document.querySelector('.surnameer').innerHTML = 'The field is invalid';
+            document.querySelector('.surnameer').innerHTML = 'The surname should not contain spaces or numbers';
           }
           else {
             check = true;
@@ -371,7 +371,7 @@ for (let input of inputs) {
         console.log(currentDate);
         if (inputDate <= currentDate) {
           check = false;
-          document.querySelector('.dateer').innerHTML = 'The field is invalid';
+          document.querySelector('.dateer').innerHTML = 'The delivery date should not be earlier than the next day';
         }
         else {
           check = true;
@@ -388,7 +388,7 @@ for (let input of inputs) {
         }
         else {
           check = false;
-          document.querySelector('.streeter').innerHTML = 'The field is invalid';
+          document.querySelector('.streeter').innerHTML = 'Street name must be at least 5 characters';
         }
       break; 
 
@@ -400,7 +400,7 @@ for (let input of inputs) {
       }
       else {
         check = false;
-        document.querySelector('.houseer').innerHTML = 'The field is invalid';
+        document.querySelector('.houseer').innerHTML = 'Positive numbers only';
       }
       break;
 
@@ -412,7 +412,7 @@ for (let input of inputs) {
         }
         else {
           check = false;
-          document.querySelector('.flater').innerHTML = 'The field is invalid';
+          document.querySelector('.flater').innerHTML = 'Positive numbers only';
         }
       break; 
     };

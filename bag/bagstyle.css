@@ -203,6 +203,7 @@ main {
     height: 90%;
     background-color: #FAFAFA;
     padding: 20px;
+    overflow-y: scroll;
     transform: translate(-50%, -50%) scale(0);
     transition: 0.5s all;
     position: absolute;
